@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Running git pre-push hook"
+
+./gradlew ktlintFormat
+./gradlew ktlintCheck
+
+RESULT=$?
+
+# return 1 exit code if running checks fails
+[ $RESULT -ne 0 ] && exit 1
+exit 0
